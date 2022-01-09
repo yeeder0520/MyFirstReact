@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>jsx語法規則</title>
+
+    <!-- CSS區塊 -->
+    <style>
+        .title {
+            background-color: greenyellow;
+            width: 200;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 準備好容器 -->
+    <div id="test"></div>
+
+    <!-- Step1.引入React核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- Step2.引入React-dom，支持操作dom -->
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- Step3.引入bable，用於將jsx轉js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        /*
+    jsx語法規則
+        1.定義虛擬DOM絕對不要用引號
+        2.標籤中如果要使用傳統js語法，請使用→{}  
+        3.CSS請使用className
+        4.如果要直接使用CSS的話 → style={{key:value}}的方式    
+        5.虛擬DOM只能有一個根標籤
+        6.標籤一定要有結束
+        7.使用自定義標籤的話:
+          首字母小寫的話，會自己去轉換HTML
+          首字母必須大寫，且一定要先定義過，否則會報錯
+    */
+      const data = ["Angular", "React", "Vue",'John','Lei'];
+
+      //1.創建虛擬DOM /*此處一定要這樣寫才行*/
+      const VDOM = (
+        <div>
+          <h1>前端js框架列表</h1>
+          <ul>
+            {data.map((item) => {
+                return <li key={item}>{item}</li>
+            })}
+            </ul>
+        </div>
+      );
+
+      //2.渲染DOM到頁面
+      ReactDOM.render(VDOM, document.getElementById("test"));
+    </script>
+</body>
+
+</html>
