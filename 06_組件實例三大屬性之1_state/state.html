@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>06_組件實例三大屬性之1_state</title>
+  </head>
+
+  <body>
+    <!-- 準備好容器 -->
+    <div id="test"></div>
+
+    <!-- Step1.引入React核心庫 -->
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <!-- Step2.引入React-dom，支持操作dom -->
+    <script
+      type="text/javascript"
+      src="../js/react-dom.development.js"
+    ></script>
+    <!-- Step3.引入bable，用於將jsx轉js -->
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+      //1.創建類式組件
+      class Weather extends React.Component {
+        constructor(props) {
+          super(props);
+          /*初始化狀態*/
+          this.state = { isHot: true };
+        }
+        render() {
+          /*讀取狀態*/
+          const { isHot } = this.state;
+
+          // onclick = onClick
+          // onblur = onBlur
+          return (
+            <h2 onClick={demo}>今天天氣很{isHot ? "好熱啊!" : "好冷喔!"}</h2>
+          );
+        }
+      }
+      //2.渲染組件到頁面
+      ReactDOM.render(<Weather />, document.getElementById("test"));
+
+      function demo() {
+        console.log("標題被點了!");
+      }
+    </script>
+  </body>
+</html>
