@@ -17,7 +17,15 @@ export default class Item extends Component {
 
   //控制"刪除按鈕"的功能
   handlerOnClick = (id) => {
-    this.props.deleteTodo(id)
+    this.props.deleteTodo(id);
+  };
+
+  //控制"勾選"的事件
+  handlerChecked = (event, id) => {
+    //取出是否被勾選的事件
+    const { checked } = event.target;
+    console.log(checked)
+    this.props.checkedTodo(id, checked);
   };
 
   render() {
@@ -33,7 +41,11 @@ export default class Item extends Component {
         onMouseLeave={this.handlerMouseLeave}
       >
         <label>
-          <input type="checkbox" defaultChecked={done} />
+          <input
+            type="checkbox"
+            checked={done}
+            onChange={(event) => this.handlerChecked(event, id)}
+          />
           <span>{name}</span>
         </label>
         <button

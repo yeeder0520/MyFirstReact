@@ -13,7 +13,7 @@ export default class List extends Component {
       >
         {todoArray &&
           todoArray.map((todo) => {
-            return <Item key={todo.id} todos={todo} deleteTodo={this.props.deleteTodo}/>;
+            return <Item key={todo.id} todos={todo} deleteTodo={this.props.deleteTodo} checkedTodo={this.props.checkedTodo}/>;
           })}
       </ul>
     );

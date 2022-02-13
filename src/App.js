@@ -37,6 +37,19 @@ export default class App extends Component {
     this.setState({ todos: newTodos });
   };
 
+  //變更被勾選的TODO事件狀態
+  checkedTodo = (id,done) => {
+    //取出原本的資料
+    const { todos } = this.state;
+    //更換被勾選的狀態，如果ID一樣，就更換他的done狀態
+    const newTodos = todos.map((todoObj) => {
+      if (todoObj.id === id) return {...todoObj,done}
+      else return todoObj
+    });
+    //把被勾選的東西加進來
+    this.setState({ todos: newTodos });
+  };
+
   render() {
     const { todos } = this.state;
 
@@ -44,8 +57,12 @@ export default class App extends Component {
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} deleteTodo={this.deleteTodo} />
-          <Footer />
+          <List
+            todos={todos}
+            deleteTodo={this.deleteTodo}
+            checkedTodo={this.checkedTodo}
+          />
+          <Footer todos={todos} />
         </div>
       </div>
     );
