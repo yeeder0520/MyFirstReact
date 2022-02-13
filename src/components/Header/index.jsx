@@ -38,6 +38,10 @@ export default class Header extends Component {
   handlerClick = () => {
     //取出輸入框的值
     const { inputValue } = this.state;
+    if (inputValue === "") {
+      alert("任務內容不得為空！");
+      return;
+    }
     this.props.addTodo({ id: nanoid(), name: inputValue, done: false });
     //結束之後清空輸入欄
     this.setState({ inputValue: "" });

@@ -62,6 +62,14 @@ export default class App extends Component {
     this.setState({ todos: newTodos });
   };
 
+  //刪除所有以勾選的項目
+  clearAllTodo = (todoObj) => {
+    //取出原本的資料
+    // const { todos } = this.state;
+    //更換被勾選的狀態，如果ID一樣，就更換他的done狀態
+    this.setState({ todos: todoObj });
+  };
+
   render() {
     const { todos } = this.state;
 
@@ -77,6 +85,7 @@ export default class App extends Component {
           <Footer
             todos={todos}
             changeAllTodoChecked={this.changeAllTodoChecked}
+            clearAllTodo={this.clearAllTodo}
           />
         </div>
       </div>
