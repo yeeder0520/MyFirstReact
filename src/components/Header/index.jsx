@@ -36,7 +36,7 @@ export default class Header extends Component {
   };
 
   //按下enter 新增todo的事件方法
-  handlerClick = (event) => {
+  handlerClick = () => {
     //取出輸入框的值
     const { inputValue } = this.state;
     this.props.addTodo({ id: nanoid(), name: inputValue.value, done: false });
