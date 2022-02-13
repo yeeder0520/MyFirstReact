@@ -38,15 +38,27 @@ export default class App extends Component {
   };
 
   //變更被勾選的TODO事件狀態
-  checkedTodo = (id,done) => {
+  checkedTodo = (id, done) => {
     //取出原本的資料
     const { todos } = this.state;
     //更換被勾選的狀態，如果ID一樣，就更換他的done狀態
     const newTodos = todos.map((todoObj) => {
-      if (todoObj.id === id) return {...todoObj,done}
-      else return todoObj
+      if (todoObj.id === id) return { ...todoObj, done };
+      else return todoObj;
     });
     //把被勾選的東西加進來
+    this.setState({ todos: newTodos });
+  };
+
+  //變更被勾選的TODO事件狀態
+  changeAllTodoChecked = (done) => {
+    //取出原本的資料
+    const { todos } = this.state;
+    //更換被勾選的狀態，如果ID一樣，就更換他的done狀態
+    const newTodos = todos.map((todoObj) => {
+      return { ...todoObj, done };
+    });
+    //把全部的狀態加回去
     this.setState({ todos: newTodos });
   };
 
@@ -62,7 +74,10 @@ export default class App extends Component {
             deleteTodo={this.deleteTodo}
             checkedTodo={this.checkedTodo}
           />
-          <Footer todos={todos} />
+          <Footer
+            todos={todos}
+            changeAllTodoChecked={this.changeAllTodoChecked}
+          />
         </div>
       </div>
     );
