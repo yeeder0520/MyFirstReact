@@ -39,7 +39,7 @@ export default class Header extends Component {
   handlerClick = () => {
     //取出輸入框的值
     const { inputValue } = this.state;
-    this.props.addTodo({ id: nanoid(), name: inputValue.value, done: false });
+    this.props.addTodo({ id: nanoid(), name: inputValue, done: false });
   };
 
   render() {
