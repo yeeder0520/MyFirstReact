@@ -15,12 +15,18 @@ export default class Item extends Component {
     this.setState({ showBtn: false });
   };
 
+  //控制"刪除按鈕"的功能
+  handlerOnClick = (id) => {
+    this.props.deleteTodo(id)
+  };
+
   render() {
     //從List取得測試資料
     const { id, name, done } = this.props.todos;
 
     //從List取得"刪除按鈕"顯示與隱藏
     const { showBtn } = this.state;
+
     return (
       <li
         onMouseOver={this.handlerMouseOver}
@@ -33,6 +39,7 @@ export default class Item extends Component {
         <button
           className="btn btn-danger"
           style={{ display: showBtn ? "block" : "none" }}
+          onClick={() => this.handlerOnClick(id)}
         >
           删除
         </button>

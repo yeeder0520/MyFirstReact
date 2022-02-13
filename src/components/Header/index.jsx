@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 import "./index.css";
 
 export default class Header extends Component {
-
   //儲存輸入框的值
   state = { inputValue: "" };
   handlerChange = (event) => {
@@ -40,6 +39,8 @@ export default class Header extends Component {
     //取出輸入框的值
     const { inputValue } = this.state;
     this.props.addTodo({ id: nanoid(), name: inputValue, done: false });
+    //結束之後清空輸入欄
+    this.setState({ inputValue: "" });
   };
 
   render() {

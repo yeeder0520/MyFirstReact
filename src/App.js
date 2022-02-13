@@ -15,12 +15,25 @@ export default class App extends Component {
     ],
   };
 
+  //增加TODO事件的方法
   addTodo = (todoObj) => {
     //取出原本的資料
     const { todos } = this.state;
     //做一個新的todos
     const newTodos = [todoObj, ...todos];
     //把Header新增的東西加進來
+    this.setState({ todos: newTodos });
+  };
+
+  //刪除TODO事件的方法
+  deleteTodo = (id) => {
+    //取出原本的資料
+    const { todos } = this.state;
+    //把被刪除的TODO的id過濾掉
+    const newTodos = todos.filter((todoObj) => {
+      return todoObj.id !== id;
+    });
+    //把被刪掉的東西加進來
     this.setState({ todos: newTodos });
   };
 
@@ -31,7 +44,7 @@ export default class App extends Component {
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo} />
-          <List todos={todos} />
+          <List todos={todos} deleteTodo={this.deleteTodo} />
           <Footer />
         </div>
       </div>
